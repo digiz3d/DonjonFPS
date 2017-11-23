@@ -11,42 +11,31 @@ public class DoorScript : MonoBehaviour {
 
     private float actualAngle = 0f;
     private bool moving = false;
-    // Use this for initialization
-    void Start() {
-    }
 
-    // Update is called once per frame
     void Update() {
         if (!moving) return;
 
-        Debug.Log("1");
         if (opened)
         {
-            Debug.Log("2");
             actualAngle += (maxAngle - minAngle) * Time.deltaTime * speed;
             if (actualAngle < maxAngle)
             {
-                Debug.Log("3");
                 gameObject.transform.RotateAround(pivotPoint.transform.position, Vector3.up, (maxAngle - minAngle) * Time.deltaTime * speed);
             }
             else
             {
-                Debug.Log("4");
                 moving = false;
             }
         }
         else
         {
-            Debug.Log("2 bis");
             actualAngle -= (maxAngle-minAngle) * Time.deltaTime * speed;
             if (actualAngle > minAngle)
             {
-                Debug.Log("3 bis");
                 gameObject.transform.RotateAround(pivotPoint.transform.position, Vector3.up, (- maxAngle - minAngle) * Time.deltaTime * speed);
             }
             else
             {
-                Debug.Log("4 bis");
                 moving = false;
             }
         }

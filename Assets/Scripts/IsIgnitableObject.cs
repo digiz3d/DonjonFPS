@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class IsIgnitableObject : MonoBehaviour {
 
-    public bool isOnFire = false;
+    public bool IsLit = false;
 
-	// Use this for initialization
-	void Start () {
-		if (this.isOnFire)
+    private ParticleSystem.EmissionModule childEmission;
+    private Light childLight;
+
+    // Use this for initialization
+    void Start () {
+        this.childEmission = gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().emission;
+        this.childLight = gameObject.transform.GetChild(1).gameObject.GetComponent<Light>();
+
+        if (this.IsLit)
         {
             this.SetOnFire();
         }
@@ -17,30 +23,19 @@ public class IsIgnitableObject : MonoBehaviour {
             this.Extinguish();
         }
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public void SetOnFire()
     {
-        this.isOnFire = true;
-        ParticleSystem.EmissionModule emission = gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().emission;
-        
-        emission.enabled = true;
+        this.IsLit = true;
 
-        Light light = gameObject.transform.GetChild(1).gameObject.GetComponent<Light>();
-        light.enabled = true;
+        childEmission.enabled = true;
+        childLight.enabled = true;
     }
 
     public void Extinguish()
     {
-        this.isOnFire = false;
-        ParticleSystem.EmissionModule emission = gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().emission;
-        emission.enabled = false;
-
-        Light light = gameObject.transform.GetChild(1).gameObject.GetComponent<Light>();
-        light.enabled = false;
+        this.IsLit = false;
+        childEmission.enabled = false;
+        childLight.enabled = false;
     }
 }

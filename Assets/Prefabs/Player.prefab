@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 114903881684553492}
   - component: {fileID: 114340895733033658}
   - component: {fileID: 114852499906755846}
+  - component: {fileID: 114682311731777100}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -113,14 +114,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1689038239346870}
-  m_LocalRotation: {x: 0, y: -0.64439064, z: 0, w: 0.76469654}
-  m_LocalPosition: {x: 1.689, y: 0.31, z: 1.212}
+  m_LocalRotation: {x: 0, y: -0.89207375, z: 0, w: 0.45188996}
+  m_LocalPosition: {x: -2.975, y: 0, z: 2.649}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4384315915919908}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -80.24, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -126.27, z: 0}
 --- !u!4 &4789647431982064
 Transform:
   m_ObjectHideFlags: 1
@@ -230,6 +231,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+--- !u!114 &114682311731777100
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1689038239346870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06f34fb28d8ac68439ac33a7746d7e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivity: 1
+  camTransform: {fileID: 4384315915919908}
 --- !u!114 &114852499906755846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -241,10 +255,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe554f559c87ca4aaac138229bb0eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasMagicWand: 0
-  spellsRange: 20
-  spellsCooldown: 0.2
-  useDistance: 2
+  HasMagicWand: 0
+  SpellsRange: 20
+  SpellsCooldown: 0.2
+  UseDistance: 2
+  camTransform: {fileID: 4384315915919908}
 --- !u!114 &114903881684553492
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -256,9 +271,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5368e777982635d4191034854e927071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
-  mouseSensitivity: 1
-  jumpSpeed: 3
+  MovementSpeed: 5
+  JumpSpeed: 3
 --- !u!124 &124410717638093958
 Behaviour:
   m_ObjectHideFlags: 1

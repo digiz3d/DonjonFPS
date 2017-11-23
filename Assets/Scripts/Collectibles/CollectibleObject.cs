@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CollectibleObject : MonoBehaviour {
-    public CanLaunchSpells wizard;
+    public IsWizard wizard;
 
     public void Collect(GameObject whoCollectedMe)
     {
@@ -11,7 +11,7 @@ public class CollectibleObject : MonoBehaviour {
         {
             wizard.GotMagicWand();
         }
-        Debug.Log("Collected " + gameObject.name);
+        Debug.Log("Tu viens de ramasser : " + gameObject.name);
         Destroy(gameObject);
     }
 }

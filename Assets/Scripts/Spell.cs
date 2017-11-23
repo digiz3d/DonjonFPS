@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class Spell : ScriptableObject {
 
-    private string spellName;
-    private float cooldown;
-    private Color color;
+    public string Name;
+    public float Cooldown;
+
     private GameObject spellProjectile;
 
     public void Init(string name, float cooldown)
     {
-        this.SpellName = name;
+        this.Name = name;
         this.Cooldown = cooldown;
-        this.spellProjectile = Resources.Load("Spells/" + this.spellName) as GameObject;
+        this.spellProjectile = Resources.Load("Spells/" + this.Name) as GameObject;
     }
 
     public void Launch(Vector3 location, Vector3 direction, Quaternion rotation)
@@ -42,31 +42,5 @@ public class Spell : ScriptableObject {
 
         //Debug.DrawRay(location, direction * this.range, this.Color, 5.0f);
         Instantiate(spellProjectile, location+direction, rotation);
-    }
-
-    public string SpellName
-    {
-        get
-        {
-            return spellName;
-        }
-
-        set
-        {
-            spellName = value;
-        }
-    }
-
-    public float Cooldown
-    {
-        get
-        {
-            return cooldown;
-        }
-
-        set
-        {
-            cooldown = value;
-        }
     }
 }

@@ -3,17 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FatLadyNPC : MonoBehaviour {
-    public CanLaunchSpells wizard;
+    public IsWizard Wizard;
+    public IsIgnitableObject[] Torchs;
+    public IsIgnitableObject Fireplace;
 
-    private bool gone = false;
+    private bool sleeping = false;
 
     public void TalkTo()
     {
-        if (gone) return;
+        if (sleeping) return;
 
-        if (!wizard.hasMagicWand)
+        if (!Wizard.HasMagicWand)
         {
             Debug.Log("Va chercher ta baguette fdp");
+        }
+        else if (!TorchesAreOff())
+        {
+            Debug.Log("Puisque tu as ta baguette, profites en pour éteindre les lumière de la salle commune avec le sort : Aguamenti !");
+            if (!Wizard.KnowsSpell("Aguamenti"))
+            {
+                Wizard.LearnNewSpell("Aguamenti");
+            }
+        }
+        else if (!FirePlaceIsLit())
+        {
+            Debug.Log("Tant qu'on y est, allume le feu de la cheminée avec le sort : Incendio !");
+            if (!Wizard.KnowsSpell("Incendio"))
+            {
+                Wizard.LearnNewSpell("Incendio");
+            }
         }
         else
         {
@@ -23,8 +41,25 @@ public class FatLadyNPC : MonoBehaviour {
         
     }
 
-    public void GoAway()
+    public void GoToSleep()
     {
-        this.gone = true;
+        this.sleeping = true;
+    }
+
+    private bool TorchesAreOff()
+    {
+        foreach(IsIgnitableObject torch in Torchs)
+        {
+            if (torch.IsLit)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private bool FirePlaceIsLit()
+    {
+        return Fireplace.IsLit;
     }
 }

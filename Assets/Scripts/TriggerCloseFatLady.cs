@@ -11,7 +11,7 @@ public class TriggerCloseFatLady : MonoBehaviour {
         if (other.tag == "Player")
         {
             door.Close();
-            fatLady.GoAway();
+            fatLady.GoToSleep();
         }
     }
     // Use this for initialization
