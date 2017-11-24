@@ -8,9 +8,9 @@ public class IsWizard : MonoBehaviour {
     public float SpellsRange = 20.0f;
     public float SpellsCooldown = 0.2f;
     public float UseDistance = 2f;
-    public Transform camTransform;
+    public Transform CamTransform;
     public GameObject SpellPanel;
-    public Text SpellPanelText;
+    public Text ActiveSpellUI;
 
     private float spellCooldownRemaining = 0.0f;
     private List<Spell> spells;
@@ -20,6 +20,8 @@ public class IsWizard : MonoBehaviour {
     private Quaternion magicWandInitialRotation;
     private Vector3 magicWandInitialPosition;
     
+
+
     // Use this for initialization
     void Start() {
         spells = new List<Spell>();
@@ -27,7 +29,7 @@ public class IsWizard : MonoBehaviour {
         LearnNewSpell("Lumos", 1.0f);
 
         equippedSpell = spells[0];
-        SpellPanelText.text = equippedSpell.Name;
+        ActiveSpellUI.text = equippedSpell.Name;
 
         magicWand = gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
         magicWandInitialRotation = magicWand.transform.localRotation;
@@ -55,8 +57,7 @@ public class IsWizard : MonoBehaviour {
         // launch a spell
         if (Input.GetMouseButton(0) && spellCooldownRemaining <= 0 && equippedSpell != null)
         {
-            equippedSpell.Launch(camTransform.position, camTransform.forward, camTransform.rotation);
-            spellCooldownRemaining = equippedSpell.Cooldown;
+            LaunchSpell();
         }
         
         if (Input.GetMouseButtonUp(0))
@@ -80,7 +81,7 @@ public class IsWizard : MonoBehaviour {
             equippedSpellIndex = Mathf.Clamp(equippedSpellIndex+addToIndex, 0, spells.Count - 1);
             equippedSpell = spells[equippedSpellIndex];
             //Debug.Log("changed spell to : " + equippedSpell.SpellName);
-            SpellPanelText.text = equippedSpell.Name;
+            ActiveSpellUI.text = equippedSpell.Name;
         }
         
     }
@@ -96,7 +97,7 @@ public class IsWizard : MonoBehaviour {
     {
         if (Input.GetButtonDown("Use"))
         {
-            Ray ray = new Ray(camTransform.position, camTransform.forward);
+            Ray ray = new Ray(CamTransform.position, CamTransform.forward);
 
             RaycastHit hitInfo;
             if (Physics.Raycast(ray, out hitInfo, 2.0f))
@@ -117,12 +118,13 @@ public class IsWizard : MonoBehaviour {
                     interactive.Interact();
                 }
             }
-            Debug.DrawRay(camTransform.position, camTransform.forward * 2.0f, Color.green, 5.0f);
+            Debug.DrawRay(CamTransform.position, CamTransform.forward * 2.0f, Color.green, 5.0f);
         }
     }
 
     public void LearnNewSpell(string spellName, float cooldown)
     {
+        if (KnowsSpell(spellName)) return;
         Spell newSpell = (Spell)ScriptableObject.CreateInstance("Spell");
         newSpell.Init(spellName, cooldown);
         this.spells.Add(newSpell);
@@ -138,11 +140,17 @@ public class IsWizard : MonoBehaviour {
     {
         foreach (Spell spell in spells)
         {
-            if (spell.name == spellName)
+            if (spell.Name == spellName)
             {
                 return true;
             }
         }
         return false;
+    }
+
+    private void LaunchSpell()
+    {
+        equippedSpell.Launch(CamTransform.position, CamTransform.forward, CamTransform.rotation);
+        spellCooldownRemaining = equippedSpell.Cooldown;
     }
 }

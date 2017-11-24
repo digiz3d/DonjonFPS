@@ -19,8 +19,8 @@ public class PlayerMoveScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        float forwardSpeed = Input.GetAxis("Vertical") * MovementSpeed;
-        float sideSpeed = Input.GetAxis("Horizontal") * MovementSpeed;
+        float forwardVelocity = Input.GetAxis("Vertical") * MovementSpeed;
+        float strafeVelocity = Input.GetAxis("Horizontal") * MovementSpeed;
 
         if (!characterController.isGrounded)
         {
@@ -30,8 +30,12 @@ public class PlayerMoveScript : MonoBehaviour {
         {
             verticalVelocity = JumpSpeed;
         }
+        else
+        {
+            verticalVelocity = 0;
+        }
 
-        Vector3 movement = new Vector3(sideSpeed, verticalVelocity, forwardSpeed);
+        Vector3 movement = new Vector3(strafeVelocity, verticalVelocity, forwardVelocity);
         movement = transform.rotation * movement;
         characterController.Move(movement * Time.deltaTime);
     }

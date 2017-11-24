@@ -74,6 +74,8 @@ GameObject:
   - component: {fileID: 114340895733033658}
   - component: {fileID: 114852499906755846}
   - component: {fileID: 114682311731777100}
+  - component: {fileID: 81669212206948100}
+  - component: {fileID: 114200518611343584}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -212,6 +214,13 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1431572205854978}
   m_Mesh: {fileID: 4300002, guid: e0dcbf986cf50cd4b8b05d1267a0d2e1, type: 3}
+--- !u!81 &81669212206948100
+AudioListener:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1689038239346870}
+  m_Enabled: 1
 --- !u!81 &81939220961524968
 AudioListener:
   m_ObjectHideFlags: 1
@@ -219,6 +228,18 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1246424119449064}
   m_Enabled: 1
+--- !u!114 &114200518611343584
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1689038239346870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e115d86c4f89354cb96b7de97636a32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SubtitlesUI: {fileID: 0}
 --- !u!114 &114340895733033658
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -259,7 +280,9 @@ MonoBehaviour:
   SpellsRange: 20
   SpellsCooldown: 0.2
   UseDistance: 2
-  camTransform: {fileID: 4384315915919908}
+  CamTransform: {fileID: 4384315915919908}
+  SpellPanel: {fileID: 0}
+  ActiveSpellUI: {fileID: 0}
 --- !u!114 &114903881684553492
 MonoBehaviour:
   m_ObjectHideFlags: 1

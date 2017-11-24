@@ -8,6 +8,12 @@ public class FatLadyNPC : MonoBehaviour {
     public IsIgnitableObject Fireplace;
 
     private bool sleeping = false;
+    private DialogSubtitles subtitles;
+
+    private void Start()
+    {
+        subtitles = Wizard.GetComponent<DialogSubtitles>();
+    }
 
     public void TalkTo()
     {
@@ -15,11 +21,11 @@ public class FatLadyNPC : MonoBehaviour {
 
         if (!Wizard.HasMagicWand)
         {
-            Debug.Log("Va chercher ta baguette fdp");
+            subtitles.Display("Enfin réveillé ?! Va chercher ta baguette avant de sortir !");
         }
         else if (!TorchesAreOff())
         {
-            Debug.Log("Puisque tu as ta baguette, profites en pour éteindre les lumière de la salle commune avec le sort : Aguamenti !");
+            subtitles.Display("Puisque tu as ta baguette, profites en pour éteindre les lumière de la salle commune avec le sort : Aguamenti !");
             if (!Wizard.KnowsSpell("Aguamenti"))
             {
                 Wizard.LearnNewSpell("Aguamenti");
@@ -27,7 +33,7 @@ public class FatLadyNPC : MonoBehaviour {
         }
         else if (!FirePlaceIsLit())
         {
-            Debug.Log("Tant qu'on y est, allume le feu de la cheminée avec le sort : Incendio !");
+            subtitles.Display("Tant qu'on y est, allume le feu de la cheminée avec le sort : Incendio !");
             if (!Wizard.KnowsSpell("Incendio"))
             {
                 Wizard.LearnNewSpell("Incendio");
@@ -35,7 +41,7 @@ public class FatLadyNPC : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Pas mal gamin");
+            subtitles.Display("Allez, je te laisse passer mais ne m'embête plus. Je dors.");
             GetComponent<DoorScript>().Open();
         }
         

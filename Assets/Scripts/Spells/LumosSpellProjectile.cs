@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LumosSpellProjectile : MonoBehaviour {
-    public float Speed = 5f;
+    public float Speed = 7f;
     private bool moving = true;
 
 	// Use this for initialization
