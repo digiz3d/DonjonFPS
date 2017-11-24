@@ -29,6 +29,7 @@ public class IsWizard : MonoBehaviour {
         LearnNewSpell("Lumos", 1.0f);
 
         equippedSpell = spells[0];
+
         ActiveSpellUI.text = equippedSpell.Name;
 
         magicWand = gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
@@ -44,7 +45,6 @@ public class IsWizard : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        HandleUseKey();
         if (!HasMagicWand) return;
 
         spellCooldownRemaining -= Time.deltaTime;
@@ -94,34 +94,7 @@ public class IsWizard : MonoBehaviour {
         magicWand.SetActive(true);
     }
 
-    void HandleUseKey()
-    {
-        if (Input.GetButtonDown("Use"))
-        {
-            Ray ray = new Ray(CamTransform.position, CamTransform.forward);
-
-            RaycastHit hitInfo;
-            if (Physics.Raycast(ray, out hitInfo, 2.0f))
-            {
-                //Debug.Log(hitInfo.collider.gameObject.name); // prints the name of the object we're aiming at
-                Vector3 hitPoint = hitInfo.point;
-                GameObject target = hitInfo.collider.gameObject;
-
-                CollectibleObject collectible = target.GetComponent<CollectibleObject>();
-                if (collectible != null)
-                {
-                    collectible.Collect(gameObject);
-                }
-
-                InteractiveObject interactive = target.GetComponent<InteractiveObject>();
-                if (interactive != null)
-                {
-                    interactive.Interact();
-                }
-            }
-            Debug.DrawRay(CamTransform.position, CamTransform.forward * 2.0f, Color.green, 5.0f);
-        }
-    }
+    
 
     public void LearnNewSpell(string spellName, float cooldown)
     {
@@ -130,7 +103,7 @@ public class IsWizard : MonoBehaviour {
         Spell newSpell = (Spell)ScriptableObject.CreateInstance("Spell");
         newSpell.Init(spellName, cooldown);
         this.spells.Add(newSpell);
-        Debug.Log("Tu viens d'apprendre le sort : " + spellName);
+        //Debug.Log("Tu viens d'apprendre le sort : " + spellName);
     }
 
     public void LearnNewSpell(string spellName)

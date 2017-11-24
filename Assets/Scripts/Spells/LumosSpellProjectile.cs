@@ -21,7 +21,10 @@ public class LumosSpellProjectile : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "MagicProjectile") return;
+        if (other.tag == "MagicProjectile")
+        {
+            return;
+        }
 
         moving = false;
     }

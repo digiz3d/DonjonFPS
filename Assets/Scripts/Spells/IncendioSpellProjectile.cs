@@ -17,7 +17,10 @@ public class IncendioSpellProjectile : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "MagicProjectile") return;
+        if (other.tag == "MagicProjectile")
+        {
+            return;
+        }
 
         GameObject go = other.gameObject;
 

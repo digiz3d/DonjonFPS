@@ -21,11 +21,11 @@ public class FatLadyNPC : MonoBehaviour {
 
         if (!Wizard.HasMagicWand)
         {
-            subtitles.Display("Enfin réveillé ?! Va chercher ta baguette avant de sortir !");
+            subtitles.Display("Déjà réveillé ? Prend au moins ta baguette magique avant de sortir...");
         }
         else if (!TorchesAreOff())
         {
-            subtitles.Display("Puisque tu as ta baguette, profites en pour éteindre les lumière de la salle commune avec le sort : Aguamenti !");
+            subtitles.Display("Puisque tu as ta baguette, profites en pour éteindre les lumière de la salle commune. <i>Utilise le sort : Aguamenti</i>");
             if (!Wizard.KnowsSpell("Aguamenti"))
             {
                 Wizard.LearnNewSpell("Aguamenti");
@@ -33,7 +33,7 @@ public class FatLadyNPC : MonoBehaviour {
         }
         else if (!FirePlaceIsLit())
         {
-            subtitles.Display("Tant qu'on y est, allume le feu de la cheminée avec le sort : Incendio !");
+            subtitles.Display("Tant qu'on y est, allume le feu de la cheminée, il caille ici. <i>Utilise le sort : Incendio</i>");
             if (!Wizard.KnowsSpell("Incendio"))
             {
                 Wizard.LearnNewSpell("Incendio");
@@ -41,7 +41,7 @@ public class FatLadyNPC : MonoBehaviour {
         }
         else
         {
-            subtitles.Display("Allez, je te laisse passer mais ne m'embête plus. Je dors.");
+            subtitles.Display("Allez, je te laisse passer mais ne m'embête plus. Je dors...");
             GetComponent<DoorScript>().Open();
         }
         
