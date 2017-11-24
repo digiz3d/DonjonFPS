@@ -17,6 +17,8 @@ public class AguamentiSpellProjectile : MonoBehaviour {
 
     void OnTriggerEnter(Collider other)
     {
+        if (other.tag != "MagicProjectile") return;
+
         GameObject go = other.gameObject;
 
         IsIgnitableObject isIgnitableObject = go.GetComponent<IsIgnitableObject>();
