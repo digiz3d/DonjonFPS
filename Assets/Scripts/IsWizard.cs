@@ -19,7 +19,7 @@ public class IsWizard : MonoBehaviour {
     private GameObject magicWand;
     private Quaternion magicWandInitialRotation;
     private Vector3 magicWandInitialPosition;
-    
+    private DialogSubtitles subtitles;
 
 
     // Use this for initialization
@@ -39,6 +39,7 @@ public class IsWizard : MonoBehaviour {
             magicWand.SetActive(false);
             SpellPanel.SetActive(false);
         }
+        subtitles = GetComponent<DialogSubtitles>();
     }
 	
 	// Update is called once per frame
@@ -125,6 +126,7 @@ public class IsWizard : MonoBehaviour {
     public void LearnNewSpell(string spellName, float cooldown)
     {
         if (KnowsSpell(spellName)) return;
+
         Spell newSpell = (Spell)ScriptableObject.CreateInstance("Spell");
         newSpell.Init(spellName, cooldown);
         this.spells.Add(newSpell);
@@ -152,5 +154,6 @@ public class IsWizard : MonoBehaviour {
     {
         equippedSpell.Launch(CamTransform.position, CamTransform.forward, CamTransform.rotation);
         spellCooldownRemaining = equippedSpell.Cooldown;
+        subtitles.Display("<i>"+ equippedSpell.Name +" !</i>");
     }
 }
