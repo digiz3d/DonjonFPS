@@ -25,7 +25,7 @@ public class FatLadyNPC : MonoBehaviour {
         }
         else if (!TorchesAreOff())
         {
-            subtitles.Display("Puisque tu as ta baguette, profites en pour éteindre les lumière de la salle commune. <i>Utilise le sort : Aguamenti</i>");
+            subtitles.Display("Puisque tu as ta baguette, profites-en pour éteindre les lumière de la salle commune.\n<i>Utilise le sort : Aguamenti</i>");
             if (!Wizard.KnowsSpell("Aguamenti"))
             {
                 Wizard.LearnNewSpell("Aguamenti");
@@ -33,7 +33,7 @@ public class FatLadyNPC : MonoBehaviour {
         }
         else if (!FirePlaceIsLit())
         {
-            subtitles.Display("Tant qu'on y est, allume le feu de la cheminée, il caille ici. <i>Utilise le sort : Incendio</i>");
+            subtitles.Display("Tant qu'on y est, allume le feu de la cheminée, il caille ici.\n<i>Utilise le sort : Incendio</i>");
             if (!Wizard.KnowsSpell("Incendio"))
             {
                 Wizard.LearnNewSpell("Incendio");

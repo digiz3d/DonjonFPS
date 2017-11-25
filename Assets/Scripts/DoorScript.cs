@@ -3,24 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class DoorScript : MonoBehaviour {
-    public bool opened = false;
-    public float speed = 1.0f;
-    public GameObject pivotPoint;
-    public float maxAngle = 90f;
-    public float minAngle = 0f;
+    public bool Opened = false;
+    public float Speed = 1.0f;
+    public GameObject PivotPoint;
+    public float MaxAngle = 90f;
+    public float MinAngle = 0f;
 
     private float actualAngle = 0f;
     private bool moving = false;
 
     void Update() {
-        if (!moving) return;
-
-        if (opened)
+        if (!moving)
         {
-            actualAngle += (maxAngle - minAngle) * Time.deltaTime * speed;
-            if (actualAngle < maxAngle)
+            return;
+        }
+
+        if (Opened)
+        {
+            actualAngle += (MaxAngle - MinAngle) * Time.deltaTime * Speed;
+            if (actualAngle < MaxAngle)
             {
-                gameObject.transform.RotateAround(pivotPoint.transform.position, Vector3.up, (maxAngle - minAngle) * Time.deltaTime * speed);
+                gameObject.transform.RotateAround(PivotPoint.transform.position, Vector3.up, (MaxAngle - MinAngle) * Time.deltaTime * Speed);
             }
             else
             {
@@ -29,10 +32,10 @@ public class DoorScript : MonoBehaviour {
         }
         else
         {
-            actualAngle -= (maxAngle-minAngle) * Time.deltaTime * speed;
-            if (actualAngle > minAngle)
+            actualAngle -= (MaxAngle-MinAngle) * Time.deltaTime * Speed;
+            if (actualAngle > MinAngle)
             {
-                gameObject.transform.RotateAround(pivotPoint.transform.position, Vector3.up, (- maxAngle - minAngle) * Time.deltaTime * speed);
+                gameObject.transform.RotateAround(PivotPoint.transform.position, Vector3.up, (- MaxAngle - MinAngle) * Time.deltaTime * Speed);
             }
             else
             {
@@ -43,19 +46,19 @@ public class DoorScript : MonoBehaviour {
 
     public void Open()
     {
-        opened = true;
+        Opened = true;
         moving = true;
     }
 
     public void Close()
     {
-        opened = false;
+        Opened = false;
         moving = true;
     }
 
     public void Toggle()
     {
-        opened = !opened;
+        Opened = !Opened;
         moving = true;
     }
 }

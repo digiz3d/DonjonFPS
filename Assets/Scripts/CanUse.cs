@@ -5,7 +5,8 @@ using UnityEngine;
 public class CanUse : MonoBehaviour {
 
     public Transform CamTransform;
-	
+    [Range(1f,5f)]
+    public float ArmsLength = 2.5f;
 	// Update is called once per frame
 	void Update () {
         HandleUseKey();
@@ -18,7 +19,7 @@ public class CanUse : MonoBehaviour {
             Ray ray = new Ray(CamTransform.position, CamTransform.forward);
 
             RaycastHit hitInfo;
-            if (Physics.Raycast(ray, out hitInfo, 2.0f))
+            if (Physics.Raycast(ray, out hitInfo, ArmsLength))
             {
                 //Debug.Log(hitInfo.collider.gameObject.name); // prints the name of the object we're aiming at
                 Vector3 hitPoint = hitInfo.point;
@@ -36,7 +37,7 @@ public class CanUse : MonoBehaviour {
                     interactive.Interact();
                 }
             }
-            Debug.DrawRay(CamTransform.position, CamTransform.forward * 2.0f, Color.green, 5.0f);
+            Debug.DrawRay(CamTransform.position, CamTransform.forward * ArmsLength, Color.green, 5.0f);
         }
     }
 }

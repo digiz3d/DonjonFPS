@@ -18,5 +18,12 @@ public class InteractiveObject : MonoBehaviour {
             door.Toggle();
             return;
         }
+
+        OpenableChestScript chest = gameObject.GetComponent<OpenableChestScript>();
+        if (chest != null)
+        {
+            chest.Open();
+            return;
+        }
     }
 }

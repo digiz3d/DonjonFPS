@@ -30,10 +30,7 @@ public class PlayerMoveScript : MonoBehaviour {
         {
             verticalVelocity = JumpSpeed;
         }
-        else
-        {
-            verticalVelocity = 0;
-        }
+        
 
         Vector3 movement = new Vector3(strafeVelocity, verticalVelocity, forwardVelocity);
         movement = transform.rotation * movement;

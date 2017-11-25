@@ -25,7 +25,7 @@ public class PlayerRotationScript : MonoBehaviour {
 
         // rotate vertically
         XClamp -= x;
-        XClamp = Mathf.Clamp(XClamp, -60.0f, 60.0f);
+        XClamp = Mathf.Clamp(XClamp, -80.0f, 80.0f);
 
         //camTransform.localEulerAngles = new Vector3(XClamp, 0, 0);
         // =
