@@ -38,7 +38,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4113579438690938}
   - component: {fileID: 143808475123232268}
-  - component: {fileID: 81349120174306648}
   - component: {fileID: 114251387239991488}
   - component: {fileID: 114285496553510622}
   - component: {fileID: 114904332279543644}
@@ -104,14 +103,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1915004017949632}
-  m_LocalRotation: {x: 0, y: -0.89207375, z: 0, w: 0.45188996}
-  m_LocalPosition: {x: -2.975, y: 0, z: 2.649}
+  m_LocalRotation: {x: 0, y: 0.94304866, z: 0, w: 0.33265498}
+  m_LocalPosition: {x: -2.612, y: 0.32, z: 2.294}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4016192832295792}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -126.27, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 141.14, z: 0}
 --- !u!4 &4826764250234008
 Transform:
   m_ObjectHideFlags: 1
@@ -222,13 +221,6 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1804493511877426}
   m_Enabled: 1
---- !u!81 &81349120174306648
-AudioListener:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1915004017949632}
-  m_Enabled: 1
 --- !u!114 &114251387239991488
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -297,6 +289,7 @@ MonoBehaviour:
   CamTransform: {fileID: 4016192832295792}
   SpellPanel: {fileID: 0}
   ActiveSpellUI: {fileID: 0}
+  EveryFlavourBeans: 0
 --- !u!114 &114929218920524272
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -309,6 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CamTransform: {fileID: 4016192832295792}
+  ArmsLength: 2.5
 --- !u!124 &124666403931433070
 Behaviour:
   m_ObjectHideFlags: 1

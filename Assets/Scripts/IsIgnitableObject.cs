@@ -11,22 +11,22 @@ public class IsIgnitableObject : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        this.childEmission = gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().emission;
-        this.childLight = gameObject.transform.GetChild(1).gameObject.GetComponent<Light>();
+        childEmission = gameObject.transform.GetChild(0).gameObject.GetComponent<ParticleSystem>().emission;
+        childLight = gameObject.transform.GetChild(1).gameObject.GetComponent<Light>();
 
         if (this.IsLit)
         {
-            this.SetOnFire();
+            SetOnFire();
         }
         else
         {
-            this.Extinguish();
+            Extinguish();
         }
 	}
 
     public void SetOnFire()
     {
-        this.IsLit = true;
+        IsLit = true;
 
         childEmission.enabled = true;
         childLight.enabled = true;
@@ -34,8 +34,20 @@ public class IsIgnitableObject : MonoBehaviour {
 
     public void Extinguish()
     {
-        this.IsLit = false;
+        IsLit = false;
         childEmission.enabled = false;
         childLight.enabled = false;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!IsLit) return;
+
+        HasHealth hasHealth = other.gameObject.GetComponent<HasHealth>();
+        if (hasHealth)
+        {
+            Extinguish();
+            hasHealth.InflictDamages(20f);
+        }
     }
 }

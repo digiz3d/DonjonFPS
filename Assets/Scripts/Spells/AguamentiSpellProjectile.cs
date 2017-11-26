@@ -21,6 +21,10 @@ public class AguamentiSpellProjectile : MonoBehaviour {
         {
             return;
         }
+        if (other.isTrigger)
+        {
+            return;
+        }
 
         GameObject go = other.gameObject;
 

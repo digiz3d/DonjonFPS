@@ -18,8 +18,12 @@ public class DialogSubtitles : MonoBehaviour {
 
     public void Display(string sentence)
     {
+        if (SubtitlesUI == null)
+        {
+            return;
+        }
         SubtitlesUI.gameObject.SetActive(true);
         SubtitlesUI.text = sentence;
-        subtitlesCooldown = sentence.Length / 5;
+        subtitlesCooldown = sentence.Length / 5f;
     }
 }

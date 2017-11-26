@@ -21,6 +21,10 @@ public class IncendioSpellProjectile : MonoBehaviour {
         {
             return;
         }
+        if (other.isTrigger)
+        {
+            return;
+        }
 
         GameObject go = other.gameObject;
 

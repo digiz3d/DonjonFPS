@@ -20,6 +20,7 @@ public class OpeningByLeversScript : MonoBehaviour {
         }
 
         subtitles.Display("<i>*BRRPLRPLRPRPRRPLRPRRPLR* (bruit d'un mur qui bouge)</i>");
-        Destroy(gameObject, 1.0f);
+        gameObject.transform.localPosition += new Vector3(1.3f,0f,0f);
+        //Destroy(gameObject, 1.0f);
     }
 }

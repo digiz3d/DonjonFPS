@@ -25,7 +25,10 @@ public class LumosSpellProjectile : MonoBehaviour {
         {
             return;
         }
-
+        if (other.isTrigger)
+        {
+            return;
+        }
         moving = false;
     }
 }

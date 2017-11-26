@@ -14,23 +14,21 @@ public class InterruptScript : MonoBehaviour {
     private float upAngle = -40f;
     private float downAngle = 40f;
     private float actualAngle;
-    private bool manuallyStarted = false;
 
     // Use this for initialization
     void Start () {
         pivotTransform = gameObject.transform.GetChild(0).transform;
         leverTransform = gameObject.transform.GetChild(1).transform;
-        wasUp = !IsUp;
+        wasUp = IsUp;
         actualAngle = (IsUp) ? upAngle : downAngle;
         leverTransform.RotateAround(pivotTransform.position, gameObject.transform.right, actualAngle);
     }
 	
 	// Update is called once per frame
 	void Update () {
-        float currentFrameAddedAngle;
         if (IsUp != wasUp)
         {
-            
+            float currentFrameAddedAngle;
             if (IsUp)
             {
                 currentFrameAddedAngle = upAngle * Time.deltaTime * OpeningSpeed;
@@ -64,19 +62,15 @@ public class InterruptScript : MonoBehaviour {
     {
         wasUp = IsUp;
         IsUp = !IsUp;
-        manuallyStarted = true;
     }
 
     void FinishedMoving(bool nowUp)
     {
         wasUp = nowUp;
         IsUp = nowUp;
-        if (manuallyStarted)
+        if (OpeningByLever != null)
         {
-            if (OpeningByLever != null)
-            {
-                OpeningByLever.TriggerActivated();
-            }
+            OpeningByLever.TriggerActivated();
         }
     }
 }

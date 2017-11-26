@@ -13,11 +13,12 @@ public class TriggerCloseFatLady : MonoBehaviour {
         {
             door.Close();
             fatLady.GoToSleep();
-            subtitles.Display("<i>Il fait sombre... je devrais pouvoir arranger ça.</i>");
+            Destroy(this, 5.0f);
         }
     }
-    // Use this for initialization
-    void Start () {
-		
-	}
+
+    private void OnDestroy()
+    {
+        subtitles.Display("<i>Il fait sombre... je devrais pouvoir arranger ça.</i>");
+    }
 }

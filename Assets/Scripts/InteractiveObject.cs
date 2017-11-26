@@ -31,5 +31,11 @@ public class InteractiveObject : MonoBehaviour {
         {
             interrupt.Toggle();
         }
+
+        InterruptEnd interruptEnd = gameObject.GetComponent<InterruptEnd>();
+        if (interruptEnd != null)
+        {
+            interruptEnd.Down();
+        }
     }
 }
