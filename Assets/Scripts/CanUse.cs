@@ -28,7 +28,7 @@ public class CanUse : MonoBehaviour {
                 CollectibleObject collectible = target.GetComponent<CollectibleObject>();
                 if (collectible != null)
                 {
-                    collectible.Collect(gameObject);
+                    collectible.Collect(GetComponent<IsWizard>());
                 }
 
                 InteractiveObject interactive = target.GetComponent<InteractiveObject>();

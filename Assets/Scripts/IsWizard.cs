@@ -11,6 +11,7 @@ public class IsWizard : MonoBehaviour {
     public Transform CamTransform;
     public GameObject SpellPanel;
     public Text ActiveSpellUI;
+    public int EveryFlavourBeans = 0;
 
     private float spellCooldownRemaining = 0.0f;
     private List<Spell> spells;
@@ -20,7 +21,6 @@ public class IsWizard : MonoBehaviour {
     private Quaternion magicWandInitialRotation;
     private Vector3 magicWandInitialPosition;
     private DialogSubtitles subtitles;
-
 
     // Use this for initialization
     void Start() {
@@ -94,7 +94,19 @@ public class IsWizard : MonoBehaviour {
         magicWand.SetActive(true);
     }
 
-    
+    public void AddEveryFlavourBeans(int quantity)
+    {
+        EveryFlavourBeans += quantity;
+    }
+
+    public void RemoveEveryFlavourBeans(int quantity)
+    {
+        EveryFlavourBeans -= quantity;
+        if (EveryFlavourBeans < 0)
+        {
+            EveryFlavourBeans = 0;
+        }
+    }
 
     public void LearnNewSpell(string spellName, float cooldown)
     {

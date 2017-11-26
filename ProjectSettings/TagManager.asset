@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MagicWand
   - MagicProjectile
+  - EveryFlavourBean
   layers:
   - Default
   - TransparentFX

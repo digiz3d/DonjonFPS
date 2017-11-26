@@ -41,7 +41,7 @@ public class FatLadyNPC : MonoBehaviour {
         }
         else
         {
-            subtitles.Display("Allez, je te laisse passer mais ne m'embête plus. Je dors...");
+            subtitles.Display("Ne m'embête plus. Je dors...");
             GetComponent<DoorScript>().Open();
         }
         

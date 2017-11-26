@@ -46,7 +46,6 @@ public class OpenableChestScript : MonoBehaviour {
                     loot.SetActive(true);
                     loot.transform.position = lootSpawnTransform.position;
                 }
-                Debug.Log("finiiii");
                 Destroy(this);
             }
         }
@@ -54,11 +53,9 @@ public class OpenableChestScript : MonoBehaviour {
 
     public void Open()
     {
-        Debug.Log("ah");
         if (!Looted)
         {
             Looted = true;
-            Debug.Log("ouvert le coffre :)");
         }
     }
 }

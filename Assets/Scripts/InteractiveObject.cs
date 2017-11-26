@@ -25,5 +25,11 @@ public class InteractiveObject : MonoBehaviour {
             chest.Open();
             return;
         }
+
+        InterruptScript interrupt = gameObject.GetComponent<InterruptScript>();
+        if (interrupt != null)
+        {
+            interrupt.Toggle();
+        }
     }
 }
