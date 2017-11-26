@@ -61,7 +61,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4207372404615772
 Transform:
   m_ObjectHideFlags: 1
@@ -283,9 +283,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26773598f7355074c9c5b2c619d2f854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FollowingObject: {fileID: 4113579438690938, guid: b7360d38a09f2ba44a5a903eaa285d60,
-    type: 2}
-  speed: 1
+  Speed: 1
+  FirstTransform: {fileID: 0}
+  SecondTransform: {fileID: 0}
+  progress: 0
 --- !u!135 &135744946298352234
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -3,27 +3,43 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GoldSnitchFollower : MonoBehaviour {
-    public Transform FollowingObject = null;
-    public float speed = 1f;
+    public float Speed = 5f; // m/s
+    public Transform PlayerTransform;
+    public Transform FinalSpawn;
 
-    private Vector3 v;
+    private int nextIndex = 0;
+    private List<Transform> path = new List<Transform>();
+    private Vector3 direction;
+    
 	// Use this for initialization
 	void Start () {
-        v = new Vector3(FollowingObject.position.x, FollowingObject.position.y + 2.0f, FollowingObject.position.z);
-    }
-	
-	// Update is called once per frame
-	void Update () {
-        if (FollowingObject == null)
-        {
-            return;
-        }
-        v = new Vector3(FollowingObject.position.x, FollowingObject.position.y + 2.0f, FollowingObject.position.z);
-        gameObject.transform.position = Vector3.Lerp(gameObject.transform.localPosition, v , Time.deltaTime * speed);
-    }
+        path.Add(gameObject.transform);
+        path.Add(PlayerTransform);
+        path.Add(FinalSpawn);
+    }   
 
-    public void FollowObject(Transform transformToFollow)
+    // Update is called once per frame
+    void Update()
     {
-        FollowingObject = transformToFollow;
+        Debug.Log("on va a l'index " + nextIndex);
+        direction = path[nextIndex].position - gameObject.transform.position;
+        if (path[nextIndex].gameObject.tag == "Player")
+        {
+            direction += new Vector3(0, 2.0f, 0);
+        }
+        if (direction.magnitude < 0.5f)
+        {
+            if (nextIndex + 2 <= path.Count)
+            {
+                nextIndex++;
+            }
+            else
+            {
+                FinalSpawn.gameObject.GetComponent<SpawnEnemyScript>().SpawnEnemy();
+                Destroy(gameObject);
+            }
+        }
+        gameObject.transform.position += Vector3.Normalize(direction) * Speed * Time.deltaTime; // it moves at the exact speed
+        Debug.Log("on est à l'index " + nextIndex);
     }
 }
