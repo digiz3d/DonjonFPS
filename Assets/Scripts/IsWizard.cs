@@ -27,7 +27,7 @@ public class IsWizard : MonoBehaviour {
         spells = new List<Spell>();
 
         LearnNewSpell("Lumos", 1.0f);
-        LearnNewSpell("Aguamenti");
+
         equippedSpell = spells[0];
 
         ActiveSpellUI.text = equippedSpell.Name;
