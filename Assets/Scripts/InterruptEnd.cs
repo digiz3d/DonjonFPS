@@ -7,6 +7,7 @@ public class InterruptEnd : MonoBehaviour
 {
     public TowerLightScript[] towerLights;
     public GameObject GoldSnitch;
+    public GameObject[] ObjectsToDisable;
 
     private bool IsUp = true; // one-way interrupt up to down -> private
     private bool wasUp = true;
@@ -49,6 +50,11 @@ public class InterruptEnd : MonoBehaviour
     public void Down()
     {
         if (!IsUp) return;
+
+        foreach(GameObject g in ObjectsToDisable)
+        {
+            g.SetActive(false);
+        }
 
         IsUp = false;
     }

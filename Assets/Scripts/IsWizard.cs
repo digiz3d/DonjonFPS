@@ -20,17 +20,22 @@ public class IsWizard : MonoBehaviour {
     private GameObject magicWand;
     private Quaternion magicWandInitialRotation;
     private Vector3 magicWandInitialPosition;
-    private DialogSubtitles subtitles;
+    private DialogSubtitles subtitlesComponent;
 
     // Use this for initialization
     void Start() {
+        if (CamTransform == null)
+        {
+            CamTransform = gameObject.transform;
+        }
         spells = new List<Spell>();
 
         LearnNewSpell("Lumos", 1.0f);
 
         equippedSpell = spells[0];
 
-        ActiveSpellUI.text = equippedSpell.Name;
+        
+        SetActiveSpellText(equippedSpell.Name);
 
         magicWand = gameObject.transform.GetChild(0).gameObject.transform.GetChild(0).gameObject;
         magicWandInitialRotation = magicWand.transform.localRotation;
@@ -40,7 +45,7 @@ public class IsWizard : MonoBehaviour {
             magicWand.SetActive(false);
             SpellPanel.SetActive(false);
         }
-        subtitles = GetComponent<DialogSubtitles>();
+        subtitlesComponent = GetComponent<DialogSubtitles>();
     }
 	
 	// Update is called once per frame
@@ -82,7 +87,7 @@ public class IsWizard : MonoBehaviour {
             equippedSpellIndex = Mathf.Clamp(equippedSpellIndex+addToIndex, 0, spells.Count - 1);
             equippedSpell = spells[equippedSpellIndex];
             //Debug.Log("changed spell to : " + equippedSpell.SpellName);
-            ActiveSpellUI.text = equippedSpell.Name;
+            SetActiveSpellText(equippedSpell.Name);
         }
         
     }
@@ -110,12 +115,12 @@ public class IsWizard : MonoBehaviour {
 
     public void LearnNewSpell(string spellName, float cooldown)
     {
-        if (KnowsSpell(spellName)) return;
-
-        Spell newSpell = (Spell)ScriptableObject.CreateInstance("Spell");
-        newSpell.Init(spellName, cooldown);
-        this.spells.Add(newSpell);
-        //Debug.Log("Tu viens d'apprendre le sort : " + spellName);
+        if (!KnowsSpell(spellName))
+        {
+            Spell newSpell = (Spell)ScriptableObject.CreateInstance("Spell");
+            newSpell.Init(spellName, cooldown);
+            this.spells.Add(newSpell);
+        }
     }
 
     public void LearnNewSpell(string spellName)
@@ -139,6 +144,17 @@ public class IsWizard : MonoBehaviour {
     {
         equippedSpell.Launch(CamTransform.position, CamTransform.forward, CamTransform.rotation);
         spellCooldownRemaining = equippedSpell.Cooldown;
-        subtitles.Display("<i>"+ equippedSpell.Name +" !</i>");
+        if (subtitlesComponent != null)
+        {
+            subtitlesComponent.Display("<i>" + equippedSpell.Name + " !</i>");
+        }
+    }
+
+    private void SetActiveSpellText(string text)
+    {
+        if (ActiveSpellUI != null)
+        {
+            ActiveSpellUI.text = text;
+        }
     }
 }
