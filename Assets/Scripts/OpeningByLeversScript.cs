@@ -6,6 +6,8 @@ public class OpeningByLeversScript : MonoBehaviour {
 
     public DialogSubtitles subtitles;
     public InterruptScript[] interrupts;
+    public GameObject[] ObjectsToEnable;
+    public GameObject[] ObjectsToDisable;
 
     public void TriggerActivated() {
 
@@ -18,7 +20,14 @@ public class OpeningByLeversScript : MonoBehaviour {
                 return;
             }
         }
-
+        foreach(GameObject obj in ObjectsToEnable)
+        {
+            obj.SetActive(true);
+        }
+        foreach(GameObject obj in ObjectsToDisable)
+        {
+            obj.SetActive(false);
+        }
         subtitles.Display("<i>*BRRPLRPLRPRPRRPLRPRRPLR* (bruit d'un mur qui bouge)</i>");
         gameObject.transform.localPosition += new Vector3(1.3f,0f,0f);
         //Destroy(gameObject, 1.0f);
