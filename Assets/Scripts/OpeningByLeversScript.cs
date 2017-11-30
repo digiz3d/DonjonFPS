@@ -9,9 +9,10 @@ public class OpeningByLeversScript : MonoBehaviour {
     public GameObject[] ObjectsToEnable;
     public GameObject[] ObjectsToDisable;
 
-    public void TriggerActivated() {
-
-        subtitles.Display("<i>*click*</i>");
+    public void TriggerActivated(bool isUp) {
+        if (!isUp) {
+            subtitles.Display("<i>*click*</i>");
+        }
         foreach (InterruptScript interrupt in interrupts)
         {
             // we want all the interupts down !
@@ -20,6 +21,7 @@ public class OpeningByLeversScript : MonoBehaviour {
                 return;
             }
         }
+        // performances optimizations
         foreach(GameObject obj in ObjectsToEnable)
         {
             obj.SetActive(true);

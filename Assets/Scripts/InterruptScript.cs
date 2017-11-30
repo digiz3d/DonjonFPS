@@ -70,7 +70,7 @@ public class InterruptScript : MonoBehaviour {
         IsUp = nowUp;
         if (OpeningByLever != null)
         {
-            OpeningByLever.TriggerActivated();
+            OpeningByLever.TriggerActivated(nowUp);
         }
     }
 }

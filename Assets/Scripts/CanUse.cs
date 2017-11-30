@@ -3,27 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class CanUse : MonoBehaviour {
-
-    public Transform CamTransform;
     [Range(1f,5f)]
     public float ArmsLength = 2.5f;
-	// Update is called once per frame
-	void Update () {
+
+    private Transform CamTransform;
+
+    // Update is called once per frame
+    void Update () {
         HandleUseKey();
     }
 
+    private void Start()
+    {
+        CamTransform = gameObject.transform.GetChild(0);
+    }
     void HandleUseKey()
     {
         if (Input.GetButtonDown("Use"))
         {
-            Ray ray = new Ray(CamTransform.position, CamTransform.forward);
-
-            RaycastHit hitInfo;
-            if (Physics.Raycast(ray, out hitInfo, ArmsLength))
+            RaycastHit hit;
+            if (Physics.Raycast(CamTransform.position, CamTransform.forward, out hit, ArmsLength))
             {
-                //Debug.Log(hitInfo.collider.gameObject.name); // prints the name of the object we're aiming at
-                Vector3 hitPoint = hitInfo.point;
-                GameObject target = hitInfo.collider.gameObject;
+                //Debug.Log(hit.collider.gameObject.name); // prints the name of the object we're aiming at
+                GameObject target = hit.collider.gameObject;
 
                 CollectibleObject collectible = target.GetComponent<CollectibleObject>();
                 if (collectible != null)

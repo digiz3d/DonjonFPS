@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PlayerRotationScript : MonoBehaviour {
     public float Sensitivity = 1.0f;
-    public Transform CamTransform;
+
+    private Transform CamTransform;
 
     private float XClamp;
 
     // Use this for initialization
     void Start () {
         Cursor.lockState = CursorLockMode.Locked;
+        CamTransform = gameObject.transform.GetChild(0);
     }
 	
 	// Update is called once per frame

@@ -8,11 +8,12 @@ public class IsWizard : MonoBehaviour {
     public float SpellsRange = 20.0f;
     public float SpellsCooldown = 0.2f;
     public float UseDistance = 2f;
-    public Transform CamTransform;
     public GameObject SpellPanel;
+    public Text EveryFlavourBeansUI;
     public Text ActiveSpellUI;
     public int EveryFlavourBeans = 0;
 
+    private Transform CamTransform;
     private float spellCooldownRemaining = 0.0f;
     private List<Spell> spells;
     private Spell equippedSpell;
@@ -24,10 +25,8 @@ public class IsWizard : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        if (CamTransform == null)
-        {
-            CamTransform = gameObject.transform;
-        }
+        CamTransform = gameObject.transform.GetChild(0);
+
         spells = new List<Spell>();
 
         LearnNewSpell("Lumos", 1.0f);
@@ -102,6 +101,7 @@ public class IsWizard : MonoBehaviour {
     public void AddEveryFlavourBeans(int quantity)
     {
         EveryFlavourBeans += quantity;
+        UpdateEveryFlavourBeansUI();
     }
 
     public void RemoveEveryFlavourBeans(int quantity)
@@ -111,8 +111,12 @@ public class IsWizard : MonoBehaviour {
         {
             EveryFlavourBeans = 0;
         }
+        UpdateEveryFlavourBeansUI();
     }
-
+    private void UpdateEveryFlavourBeansUI()
+    {
+        EveryFlavourBeansUI.text = EveryFlavourBeans.ToString();
+    }
     public void LearnNewSpell(string spellName, float cooldown)
     {
         if (!KnowsSpell(spellName))
