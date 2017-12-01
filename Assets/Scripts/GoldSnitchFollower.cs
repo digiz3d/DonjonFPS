@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GoldSnitchFollower : MonoBehaviour {
     public float Speed = 5f; // m/s
     public GameObject Player;
+    public Text endingUI;
 
     private int nextIndex = 0;
     private List<Transform> path = new List<Transform>();
@@ -63,7 +65,7 @@ public class GoldSnitchFollower : MonoBehaviour {
                 }
                 else
                 {
-                    Application.Quit(); // dat ending XD
+                    endingUI.enabled = true;
                 }
             }
         }
